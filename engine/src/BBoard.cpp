@@ -4,6 +4,22 @@
 
 #include "BBoard.h"
 
+
+#ifdef _WIN32
+int __builtin_ffsll(unsigned long long x) {
+    if (x == 0) {
+        return 0;  // No bits set
+    }
+
+    int position = 1;
+    while ((x & 1) == 0) {
+        x >>= 1;
+        position++;
+    }
+    return position;
+}
+#endif
+
 namespace BBoard {
 
     // Generation
